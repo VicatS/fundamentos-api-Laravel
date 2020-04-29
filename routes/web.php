@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::apiResource('api/posts', 'Api\PostController');
+Route::group(['prefix', 'api'], function () {
+    Route::apiResource('api/posts', 'Api\PostController');
+});
+
+
