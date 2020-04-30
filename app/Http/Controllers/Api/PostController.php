@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
-use App\Http\Requests\UpdatePostRequest;
+use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
@@ -25,7 +25,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(
+            new PostCollection(
+                $this->post->orderBy('id', 'desc')->get()
+        ));
     }
 
     /**
