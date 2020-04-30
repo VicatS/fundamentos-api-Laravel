@@ -13,6 +13,14 @@ class PostController extends Controller
 {
     protected $post;
 
+    /*
+     * 1XX : Informativo
+     * 2XX : Respuesta exitosa
+     * 3XX : Redireccion
+     * 4XX : Errores del cliente
+     * 5XX : Errores del servidor
+     * */
+
     public function __construct(Post $post)
     {
         $this->post = $post;
@@ -28,7 +36,8 @@ class PostController extends Controller
         return response()->json(
             new PostCollection(
                 $this->post->orderBy('id', 'desc')->get()
-        ));
+            ), 200
+        );
     }
 
     /**
